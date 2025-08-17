@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #0f172a;
+  --card: #111827;
+  --muted: #1f2937;
+  --accent: #22d3ee;
+}
+
+body { @apply bg-slate-900 text-white; }
+.card { @apply bg-slate-800 rounded-2xl shadow-lg p-4; }
+.btn { @apply px-4 py-2 rounded-xl font-semibold transition hover:opacity-90; }
+.btn-primary { @apply bg-cyan-400 text-slate-900; }
+.btn-outline { @apply border border-cyan-400 text-cyan-400; }
+.input { @apply w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 focus:outline-none focus:ring-2 focus:ring-cyan-400; }
+.label { @apply text-sm text-slate-300 mb-1; }
+.nav { @apply flex gap-2; }
+.tab { @apply px-3 py-2 rounded-xl cursor-pointer; }
+.tab-active { @apply bg-cyan-400 text-slate-900; }
+.badge { @apply text-xs px-2 py-1 rounded-full bg-red-500 text-white; }
+.skeleton { @apply animate-pulse bg-slate-700 rounded; }

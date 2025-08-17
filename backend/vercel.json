@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "api/index.cjs": {
+      "memory": 512,
+      "maxDuration": 10
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "api/index.cjs"
+    }
+  ]
+}
