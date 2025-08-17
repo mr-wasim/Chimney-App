@@ -1,14 +1,8 @@
 {
-  "functions": {
-    "api/index.cjs": {
-      "memory": 512,
-      "maxDuration": 10
-    }
-  },
+  "version": 2,
+  "builds": [{ "src": "api/index.js", "use": "@vercel/node" }],
   "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "api/index.cjs"
-    }
+    { "src": "/api/(.*)", "dest": "api/index.cjs" },     
+    { "src": "/(.*)", "status": 404, "dest": "api/index.cjs" } 
   ]
 }

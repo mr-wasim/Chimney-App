@@ -30,6 +30,16 @@ export function createApp() {
     origin: corsOrigin === '*' ? true : [corsOrigin],
     credentials: true
   }));
+  // CORS — frontend domain allow karo (deploy ke baad update kar dena)
+app.use(cors({
+  origin: process.env.CORS_ORIGIN?.split(',') || '*',
+  credentials: true
+}));
+app.use(express.json());
+
+// routes yahan mount karo
+// example: app.use('/auth', require('./routes/auth'));
+app.get('/health', (req, res) => res.json({ ok: true }));
 
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
