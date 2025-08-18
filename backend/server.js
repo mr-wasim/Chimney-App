@@ -11,26 +11,32 @@ const PORT = process.env.PORT || 4000;
 // Express app
 const app = express();
 
-// Middleware
+// ✅ Middleware
 app.use(cors({
-  origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
+  origin: [
+    "http://localhost:5173",            // Local dev
+    "https://chimney-app-ejck.vercel.app" // Deployed frontend
+  ],
   methods: ["GET", "POST"],
   credentials: true
 }));
 app.use(express.json());
 
-// Create HTTP server
+// ✅ Create HTTP server
 const server = http.createServer(app);
 
-// Socket.io server
+// ✅ Socket.io server
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
+    origin: [
+      "http://localhost:5173",
+      "https://chimney-app-ejck.vercel.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
-// Socket.io events
+// ✅ Socket.io events
 io.on("connection", (socket) => {
   console.log("User connected:", socket.id);
 
@@ -39,12 +45,21 @@ io.on("connection", (socket) => {
   });
 });
 
-// Example route
+// ✅ Example API route
 app.get("/", (req, res) => {
-  res.send("Backend is running ✅");
+  res.send("🔥 Chimney Solutions Backend is running ✅");
 });
 
-// Start server
+// Dummy auth route (remove if already defined somewhere else)
+app.post("/api/auth/login", (req, res) => {
+  const { email, password } = req.body;
+  if (email && password) {
+    return res.json({ success: true, message: "Login successful!" });
+  }
+  res.status(400).json({ success: false, message: "Invalid credentials" });
+});
+
+// ✅ Start server
 server.listen(PORT, () => {
-  console.log(`Backend listening on port ${PORT}`);
+  console.log(`🚀 Backend listening on http://localhost:${PORT}`);
 });
