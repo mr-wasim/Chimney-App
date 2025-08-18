@@ -29,7 +29,7 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
     origin: "https://chimney-app-ejck.vercel.app", // apna frontend URL
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
   }
 });
