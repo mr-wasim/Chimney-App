@@ -4,7 +4,7 @@ import Toast from '../components/Toast'
 import { useNavigate } from 'react-router-dom'
 
 export default function Login() {
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')   // username -> email
   const [password, setPassword] = useState('')
   const [toast, setToast] = useState({ show: false, message: '' })
   const nav = useNavigate()
@@ -14,7 +14,7 @@ export default function Login() {
     try {
       const { data } = await api.post(
         '/auth/login',
-        { username, password },
+        { email, password },   // backend expects email + password
         {
           headers: {
             'Content-Type': 'application/json',
@@ -44,12 +44,13 @@ export default function Login() {
         <p className="text-slate-300 mb-4">Admin & Technician Login</p>
         <form onSubmit={submit} className="space-y-3">
           <div>
-            <label className="label">Username</label>
+            <label className="label">Email</label>
             <input
+              type="email"
               className="input"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter username"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter email"
             />
           </div>
           <div>
