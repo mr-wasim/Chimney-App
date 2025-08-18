@@ -13,12 +13,9 @@ import techRoutes from './routes/tech.routes.js';
 import { initModels } from './models/index.js';
 import { seedAdminIfNeeded } from './utils/seedAdmin.js';
 import { Server } from 'socket.io';
-import path from "path"
 
 export function createApp() {
   const app = express();
-
-  const _dirname = path.resolve()
 
   // Security & utilities
   app.use(helmet());
@@ -50,23 +47,10 @@ export function createApp() {
   initModels();
 
   // Routes
-  app.get('/', (req, res) => {
-  res.redirect('/login');
-});
   app.get('/', (req, res) => res.json({ ok: true, uptime: process.uptime() }));
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/tech', techRoutes);
-
-
-  // Surve path
-
-  app.use(express.static(path.join(_dirname, "/frontend/dist")))
-  app.get("*", (_, res)=>{
-    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
-  })
-
-  
 
   // 404
   app.use((req, res) => res.status(StatusCodes.NOT_FOUND).json({ message: 'Route not found' }));
