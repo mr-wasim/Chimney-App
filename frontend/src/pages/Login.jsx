@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import api from '../lib/api'
 import Toast from '../components/Toast'
@@ -14,7 +15,7 @@ export default function Login() {
     try {
       const { data } = await api.post(
         '/auth/login',
-        { username, password },   // backend expects username + password
+        { username, password },
         {
           headers: {
             'Content-Type': 'application/json',
@@ -46,7 +47,6 @@ export default function Login() {
           <div>
             <label className="label">Username</label>
             <input
-              type="text"
               className="input"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
