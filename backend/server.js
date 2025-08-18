@@ -9,6 +9,13 @@ const server = http.createServer(app);
 
 attachSocket(server);
 
+const io = new Server(server, {
+  cors: {
+    origin: "https://chimney-app.vercel.app",
+    methods: ["GET","POST"]
+  },
+});
+
 server.listen(PORT, () => {
   console.log(`Backend listening on http://localhost:${PORT}`);
 });
