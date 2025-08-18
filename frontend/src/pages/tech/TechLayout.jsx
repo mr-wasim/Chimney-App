@@ -6,7 +6,7 @@ import io from 'socket.io-client'
 import Toast from '../../components/Toast'
 import { UserIcon, CreditCardIcon, PhoneIcon, ClipboardDocumentIcon } from "@heroicons/react/24/outline"
 
-const socket = io(import.meta.env.VITE_API_BASE || 'http://localhost:4000', { withCredentials:true })
+const socket = io(import.meta.env.VITE_API_BASE || 'https://chimney-app.onrender.com', { withCredentials:true })
 
 export default function TechLayout(){
   return (
