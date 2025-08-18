@@ -30,7 +30,6 @@ export function createApp() {
     origin: corsOrigin === '*' ? true : [corsOrigin],
     credentials: true
   }));
-  
 
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
