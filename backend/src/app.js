@@ -30,6 +30,11 @@ export function createApp() {
     origin: corsOrigin === '*' ? true : [corsOrigin],
     credentials: true
   }));
+  
+app.use(cors({
+  origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
+  credentials: true
+}));
 
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
