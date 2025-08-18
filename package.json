@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "type": "module",
   "main": "server.js",
-  
   "scripts": {
-    "dev": "node server.js",
-    "start": "node server.js",
+    "dev": "node backend/server.js",
+    "build": "npm install && npm install--prefix frontend && npm run build --prefix frontend",
+    "start": "node backend/server.js",
     "vercel": "node api/index.cjs"
   },
   "dependencies": {
@@ -25,6 +25,4 @@
     "xss-clean": "^0.1.4",
     "serverless-http": "^3.2.0"
   }
-
-  
 }

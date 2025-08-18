@@ -15,6 +15,8 @@ const { seedAdminIfNeeded } = require('./utils/seedAdmin.cjs');
 
 function createApp() {
   const app = express();
+  console.log("🔥 Running app.cjs");
+
 
   app.use(helmet());
   app.use(xss());
@@ -40,7 +42,10 @@ function createApp() {
 
   initModels();
 
-  app.get('/', (req, res) => res.json({ ok: true, uptime: process.uptime() }));
+    // root URL pe redirect to login
+app.get('/', (req, res) => {
+  res.redirect('/login');
+});
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/tech', techRoutes);
