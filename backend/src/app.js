@@ -30,12 +30,20 @@ export function createApp() {
     origin: corsOrigin === '*' ? true : [corsOrigin],
     credentials: true
   }));
-  
-app.use(cors({
-  origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
-  credentials: true
-}));
 
+  app.use(cors({
+    origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
+    credentials: true
+  }));
+  // ✅ Allow only your frontend
+  app.use(cors({
+    origin: "https://chimney-app-ejck.vercel.app", // apna frontend URL
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true
+  }));
+
+  app.use(express.json());
+  
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
 

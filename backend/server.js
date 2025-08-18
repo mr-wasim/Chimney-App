@@ -28,11 +28,9 @@ const server = http.createServer(app);
 // ✅ Socket.io server
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:5173",
-      "https://chimney-app-ejck.vercel.app"
-    ],
-    methods: ["GET", "POST"]
+    origin: "https://chimney-app-ejck.vercel.app", // apna frontend URL
+    methods: ["GET", "POST"],
+    credentials: true
   }
 });
 
