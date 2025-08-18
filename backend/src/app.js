@@ -17,8 +17,6 @@ import path from "path"
 
 export function createApp() {
   const app = express();
-  console.log("🔥 Running app.js");
-
 
   const _dirname = path.resolve()
 
@@ -52,33 +50,21 @@ export function createApp() {
   initModels();
 
   // Routes
-   // root URL pe redirect to login
-app.get('/', (req, res) => {
+  app.get('/', (req, res) => {
   res.redirect('/login');
 });
-app.get("/api/health", (req, res) => {
-  res.json({ ok: true, uptime: process.uptime() });
-});
+  app.get('/', (req, res) => res.json({ ok: true, uptime: process.uptime() }));
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/tech', techRoutes);
 
-  // root URL pe redirect to login
-app.get('/', (req, res) => {
-  res.redirect('/login');
-});
-
 
   // Surve path
 
-  
-// Serve static files from React app
-app.use(express.static(path.join(__dirname, 'frontend/dist')));
-
-// React routing, so every other route goes to React app
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'frontend/dist', 'index.html'));
-});
+  app.use(express.static(path.join(_dirname, "/frontend/dist")))
+  app.get("*", (_, res)=>{
+    res.sendFile(path.resolve(_dirname, "frontend", "dist", "index.html"))
+  })
 
   
 

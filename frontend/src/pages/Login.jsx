@@ -41,9 +41,7 @@ export default function Login() {
         <div className="mt-4 text-sm text-slate-300">
           New technician? <a className="text-cyan-400 underline" href="/tech/register">Create New Technician ID</a>
         </div>
-        <div className="mt-4 text-xs text-slate-400">
-          Admin credentials (seeded): username <b>admin</b>, password <b>Chimneysolution@123#</b>
-        </div>
+        
       </div>
     </div>
   )
