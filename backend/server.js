@@ -13,10 +13,8 @@ const app = express();
 
 // ✅ Middleware
 app.use(cors({
-  origin: [
-    "http://localhost:5173",            // Local dev
-    "https://chimney-app-ejck.vercel.app" // Deployed frontend
-  ],
+  origin: ["https://chimney-app-ejck.vercel.app" // Deployed frontend
+],
   methods: ["GET", "POST"],
   credentials: true
 }));
