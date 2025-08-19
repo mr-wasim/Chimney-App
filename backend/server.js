@@ -1,6 +1,6 @@
 import dotenv from "dotenv";
 dotenv.config();
-import authRoutes from "./src/routes/auth.routes.js";
+
 import express from "express";
 import http from "http";
 import cors from "cors";
@@ -10,7 +10,6 @@ const PORT = process.env.PORT || 4000;
 
 // Express app
 const app = express();
-app.use(express.json());
 
 // ✅ Middleware
 app.use(cors({
@@ -49,7 +48,7 @@ app.get("/", (req, res) => {
   res.send("🔥 Chimney Solutions Backend is running ✅");
 });
 
-app.use("/api/auth", authRoutes);
+
 
 // ✅ Start server
 server.listen(PORT, () => {
