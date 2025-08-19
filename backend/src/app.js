@@ -32,7 +32,7 @@ export function createApp() {
   }));
 
   app.use(cors({
-    origin: ["http://localhost:5173", "https://chimney-app-ejck.vercel.app"],
+    origin: ["https://chimney-app-ejck.vercel.app"],
     credentials: true
   }));
   // ✅ Allow only your frontend
@@ -43,7 +43,7 @@ export function createApp() {
   }));
 
   app.use(express.json());
-  
+
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
 
