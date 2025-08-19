@@ -55,6 +55,14 @@ app.post("/api/auth/login", (req, res) => {
   res.status(400).json({ success: false, message: "Invalid credentials" });
 });
 
+app.get("/testdb", async (req, res) => {
+  try {
+    const users = await mongoose.connection.db.collection("users").findOne({});
+    res.json({ status: "✅ Connected", sampleUser: users });
+  } catch (err) {
+    res.status(500).json({ status: "❌ Not Connected", error: err.message });
+  }
+});
 // ✅ Start server
 server.listen(PORT, () => {
   console.log(`🚀 Backend listening on http://localhost:${PORT}`);
