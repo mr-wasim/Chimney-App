@@ -48,7 +48,14 @@ app.get("/", (req, res) => {
   res.send("🔥 Chimney Solutions Backend is running ✅");
 });
 
-
+// Dummy auth route (remove if already defined somewhere else)
+app.post("/api/auth/login", (req, res) => {
+  const { email, password } = req.body;
+  if (email && password) {
+    return res.json({ success: true, message: "Login successful!" });
+  }
+  res.status(400).json({ success: false, message: "Invalid credentials" });
+});
 
 // ✅ Start server
 server.listen(PORT, () => {
