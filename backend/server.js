@@ -63,6 +63,11 @@ app.get("/testdb", async (req, res) => {
     res.status(500).json({ status: "❌ Not Connected", error: err.message });
   }
 });
+app.get("/dbstatus", (req, res) => {
+  const state = mongoose.connection.readyState;
+  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+  res.json({ dbState: state });
+});
 // ✅ Start server
 server.listen(PORT, () => {
   console.log(`🚀 Backend listening on http://localhost:${PORT}`);
