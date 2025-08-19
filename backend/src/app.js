@@ -64,6 +64,9 @@ export function createApp() {
   app.use('/api/auth', authRoutes);
   app.use('/api/admin', adminRoutes);
   app.use('/api/tech', techRoutes);
+  app.get("/api/test", (req, res) => {
+  res.send("✅ Test route working fine on Render");
+});
 
   // 404
   app.use((req, res) => res.status(StatusCodes.NOT_FOUND).json({ message: 'Route not found' }));
