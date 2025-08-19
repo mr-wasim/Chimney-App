@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 4000;
 
 // Express app
 const app = express();
+app.use(express.json());
 
 // ✅ Middleware
 app.use(cors({
@@ -48,14 +49,7 @@ app.get("/", (req, res) => {
   res.send("🔥 Chimney Solutions Backend is running ✅");
 });
 
-// Dummy auth route (remove if already defined somewhere else)
-app.post("/api/auth/login", (req, res) => {
-  const { email, password } = req.body;
-  if (email && password) {
-    return res.json({ success: true, message: "Login successful!" });
-  }
-  res.status(400).json({ success: false, message: "Invalid credentials" });
-});
+app.use("/api/auth", authRoutes);
 
 // ✅ Start server
 server.listen(PORT, () => {
