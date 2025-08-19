@@ -23,11 +23,23 @@ function createApp() {
   app.use(cookieParser());
   app.set('trust proxy', 1);
 
-  const corsOrigin = process.env.CORS_ORIGIN || '*';
-  app.use(cors({
-    origin: corsOrigin === '*' ? true : [corsOrigin],
-    credentials: true
-  }));
+    const corsOrigin = process.env.CORS_ORIGIN || '*';
+    app.use(cors({
+      origin: corsOrigin === '*' ? true : [corsOrigin],
+      credentials: true
+    }));
+  
+    app.use(cors({
+      origin: ["https://chimney-app-ejck.vercel.app"],
+      credentials: true
+    }));
+    // ✅ Allow only your frontend
+    app.use(cors({
+      origin: "https://chimney-app-ejck.vercel.app", // apna frontend URL
+      methods: ["GET", "POST", "PUT", "DELETE"],
+      credentials: true
+    }));
+  
 
   const limiter = rateLimit({ windowMs: 60 * 1000, max: 200 });
   app.use(limiter);
